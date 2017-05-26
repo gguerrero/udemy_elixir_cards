@@ -40,8 +40,8 @@ defmodule Cards do
       iex> Cards.create_deck |> Cards.shuffle |> Cards.deal(3)
       {["Five of Spades", "King of Hearts", "Seven of Clubs"], [...]}
   """
-  def deal(deck, hand) do
-    Enum.split(deck, hand)
+  def deal(deck, hand_size) do
+    Enum.split(deck, hand_size)
   end
 
   def save(deck, filename) do
@@ -54,6 +54,12 @@ defmodule Cards do
       {:ok, binary} -> :erlang.binary_to_term(binary)
       {:error, _reason} -> "Cannot read file '#{filename}'."
     end
+  end
+
+  def create_hand(hand_size) do
+    Cards.create_deck
+    |> Cards.shuffle
+    |> Cards.deal(hand_size)
   end
 
 end
