@@ -9,14 +9,10 @@ defmodule Cards do
 
   ### Examples
 
-      iex> Cards.create_deck() |> Enum.slice(0,26)
+      iex> Cards.create_deck() |> Enum.slice(0,10)
       ["Ace of Spades", "Two of Spades", "Three of Spades", "Four of Spades",
        "Five of Spades", "Six of Spades", "Seven of Spades", "Eight of Spades",
-       "Nine of Spades", "Ten of Spades", "Jack of Spades", "Queen of Spades",
-       "King of Spades", "Ace of Clubs", "Two of Clubs", "Three of Clubs",
-       "Four of Clubs", "Five of Clubs", "Six of Clubs", "Seven of Clubs",
-       "Eight of Clubs", "Nine of Clubs", "Ten of Clubs", "Jack of Clubs",
-       "Queen of Clubs", "King of Clubs"]
+       "Nine of Spades", "Ten of Spades"]
   """
   def create_deck do
     values = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", 
