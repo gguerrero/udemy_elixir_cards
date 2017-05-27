@@ -9,20 +9,14 @@ defmodule Cards do
 
   ### Examples
 
-      iex> Cards.create_deck()
+      iex> Cards.create_deck() |> Enum.slice(0,26)
       ["Ace of Spades", "Two of Spades", "Three of Spades", "Four of Spades",
        "Five of Spades", "Six of Spades", "Seven of Spades", "Eight of Spades",
        "Nine of Spades", "Ten of Spades", "Jack of Spades", "Queen of Spades",
        "King of Spades", "Ace of Clubs", "Two of Clubs", "Three of Clubs",
        "Four of Clubs", "Five of Clubs", "Six of Clubs", "Seven of Clubs",
        "Eight of Clubs", "Nine of Clubs", "Ten of Clubs", "Jack of Clubs",
-       "Queen of Clubs", "King of Clubs", "Ace of Hearts", "Two of Hearts",
-       "Three of Hearts", "Four of Hearts", "Five of Hearts", "Six of Hearts",
-       "Seven of Hearts", "Eight of Hearts", "Nine of Hearts", "Ten of Hearts",
-       "Jack of Hearts", "Queen of Hearts", "King of Hearts", "Ace of Diamonds",
-       "Two of Diamonds", "Three of Diamonds", "Four of Diamonds", "Five of Diamonds",
-       "Six of Diamonds", "Seven of Diamonds", "Eight of Diamonds",
-       "Nine of Diamonds", "Ten of Diamonds", "Jack of Diamonds", ...]
+       "Queen of Clubs", "King of Clubs"]
   """
   def create_deck do
     values = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", 
@@ -38,20 +32,8 @@ defmodule Cards do
 
   ### Examples
 
-      iex> Cards.create_deck() |> Cards.shuffle()
-      ["Four of Diamonds", "Ace of Clubs", "Eight of Spades", "Two of Clubs",
-       "Three of Clubs", "Three of Diamonds", "Jack of Spades", "Three of Spades",
-       "Jack of Diamonds", "Eight of Clubs", "Nine of Clubs", "Queen of Diamonds",
-       "Two of Spades", "Two of Hearts", "Three of Hearts", "King of Hearts",
-       "Ace of Spades", "Two of Diamonds", "King of Spades", "Five of Spades",
-       "Six of Clubs", "Ace of Diamonds", "Six of Spades", "Nine of Spades",
-       "Four of Hearts", "Seven of Spades", "Ten of Clubs", "King of Clubs",
-       "Ten of Hearts", "Eight of Diamonds", "Ten of Diamonds", "Seven of Hearts",
-       "Five of Diamonds", "Jack of Clubs", "Queen of Spades", "Nine of Hearts",
-       "Nine of Diamonds", "Five of Hearts", "Six of Hearts", "Ten of Spades",
-       "Six of Diamonds", "Seven of Clubs", "Five of Clubs", "Ace of Hearts",
-       "Seven of Diamonds", "Eight of Hearts", "King of Diamonds", "Four of Spades",
-       "Four of Clubs", "Jack of Hearts", ...]
+      iex> Cards.create_deck() |> Cards.shuffle() |> Enum.count
+      52
   """
   def shuffle(deck) do
     Enum.shuffle(deck)
@@ -59,7 +41,7 @@ defmodule Cards do
 
 
   @doc """
-  Check if a given `card` parameter exists within a given `deck` parameter.
+  Determines whether a deck contains a given card.
 
   ### Examples
 
@@ -81,10 +63,9 @@ defmodule Cards do
 
   ### Examples
 
-      iex> {hand, deck} = Cards.create_deck() |> Cards.shuffle() |> Cards.deal(3)
-      {["Five of Spades", "King of Hearts", "Seven of Clubs"], [...]}
+      iex> {hand, _remainder} = Cards.create_deck() |> Cards.deal(3)
       iex> hand
-      ["Five of Spades", "King of Hearts", "Seven of Clubs"]
+      ["Ace of Spades", "Two of Spades", "Three of Spades"]
   """
   def deal(deck, hand_size \\ 1) do
     Enum.split(deck, hand_size)
@@ -115,9 +96,9 @@ defmodule Cards do
   The `hand_size` parameter indicates how many cards should be in the hand.
 
   ### Examples
-      iex> {hand, remainer} = Cards.create_hand(5)
-      iex> hand
-      ["Four of Hearts", "Ten of Diamonds", "Two of Diamonds", "King of Spades", "Ten of Clubs"]
+      iex> {hand, _remainder} = Cards.create_hand(5)
+      iex> hand |> Enum.count
+      5
   """
   def create_hand(hand_size) do
     Cards.create_deck
