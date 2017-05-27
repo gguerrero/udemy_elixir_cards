@@ -2,12 +2,24 @@ defmodule Cards.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :cards,
-     version: "0.1.0",
-     elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :cards,
+      version: "0.2.0",
+      elixir: "~> 1.4",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      deps: deps(),
+
+      # Docs
+      name: "Cards",
+      source_url: "https://github.com/gguerrero/udemy_elixir_cards",
+      homepage_url: "http://elixircards.co.uk/", # Fakeeeee
+      docs: [
+        main: "Cards", # The main page in the docs
+        logo: "public/elixircards.png",
+        extras: ["README.md"]
+      ]
+     ]
   end
 
   # Configuration for the OTP application
@@ -29,7 +41,7 @@ defmodule Cards.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:ex_doc, "~> 0.12"}
+      {:ex_doc, "~> 0.12", only: :dev, runtime: false}
     ]
   end
 end
